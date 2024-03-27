@@ -39,6 +39,8 @@
     }
     if (in_array('italic', $fontStyle)) {
         $style .= "font-style: italic;";
+    } else {
+        $style.= "font-weight: normal; font-style: normal;";
     }
 
     echo "<p style=\"$style\">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>";
