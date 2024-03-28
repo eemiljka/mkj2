@@ -10,6 +10,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
     if (isset($_POST["remember"])) {
         setcookie("username", $username, time() + (86400 * 30), "/");
+        // refresh page to get cookie
+        header("Location: " . $_SERVER['PHP_SELF']);
     } else {
         if (isset($_COOKIE["username"])) {
             setcookie("username", "", time() - 3600, "/");
