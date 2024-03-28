@@ -10,25 +10,46 @@
 <body>
 <?php
 if (isset($_GET['success'])):
+    ?>
+    <aside>
+        <p><?php echo $_GET['success']; ?></p>
+    </aside>
+<?php
+endif;
 ?>
-<aside>
-    <p>
-        <?php echo $_GET['success']; ?>
-    </p>
-</aside>
-<?php endif; ?>
-<form action="insertData.php" method="POST">
-    <div>
-        <label for="title">Title</label>
-        <input type="text" name="title" id="title">
-    </div>
-    <div>
-        <label for="description">Description</label>
-        <textarea name="description" id="description"></textarea>
-    </div>
-    <div>
-        <button type="submit" value="Save">Save</button>
-    </div>
-</form>
+<section>
+    <form action="insertData.php" method="post">
+        <div>
+            <label for="title">Title</label>
+            <input type="text" name="title" id="title">
+        </div>
+        <div>
+            <label for="description">Description</label>
+            <textarea name="description" id="description"></textarea>
+        </div>
+        <div>
+            <input type="submit" value="Save">
+        </div>
+    </form>
+</section>
+<section>
+    <table>
+        <thead>
+        <tr>
+            <th>media_id</th>
+            <th>user_id</th>
+            <th>filename</th>
+            <th>filesize</th>
+            <th>media_type</th>
+            <th>title</th>
+            <th>description</th>
+            <th>created_at</th>
+        </tr>
+        </thead>
+        <tbody>
+    <?php require_once 'selectData.php'; ?>
+        </tbody>
+    </table>
+</section>
 </body>
 </html>
