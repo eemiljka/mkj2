@@ -20,7 +20,7 @@ if (isset($_GET['success'])):
 endif;
 ?>
 <section>
-    <form action="insertData.php" method="post">
+    <form action="insertData.php" method="post" enctype="multipart/form-data">
         <div>
             <label for="title">Title</label>
             <input type="text" name="title" id="title">
@@ -28,6 +28,10 @@ endif;
         <div>
             <label for="description">Description</label>
             <textarea name="description" id="description"></textarea>
+        </div>
+        <div>
+            <label for="file">File</label>
+            <input type="file" name="file" id="file">
         </div>
         <div>
             <input type="submit" value="Save">
