@@ -5,7 +5,7 @@ require 'dbConnect.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['title']) && isset($_POST['description'])) {
         $data = [
-            'user_id' => 7,
+            'user_id' => 1,
             'filename' => 'https://placekitten.com/640',
             'media_type' => 'image/jpeg',
             'title' => $_POST['title'],
