@@ -1,66 +1,44 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <script src="js/main.js" defer></script>
-</head>
-<body>
 <?php
-if (isset($_GET['success'])):
-    ?>
-    <dialog id="success-modal">
-        <p><a href="#" class="close-modal">Close</a></p>
-        <p><?php echo $_GET['success']; ?></p>
-    </dialog>
-<?php
-endif;
+require_once __DIR__ . '/inc/header.php';
 ?>
 <section>
-    <form action="insertData.php" method="post" enctype="multipart/form-data">
+    <h2>Login</h2>
+    <!-- login form -->
+    <form action="login.php" method="post">
         <div>
-            <label for="title">Title</label>
-            <input type="text" name="title" id="title">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username">
         </div>
         <div>
-            <label for="description">Description</label>
-            <textarea name="description" id="description"></textarea>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password">
         </div>
         <div>
-            <label for="file">File</label>
-            <input type="file" name="file" id="file">
-        </div>
-        <div>
-            <input type="submit" value="Save">
+            <input type="submit" value="Login">
         </div>
     </form>
 </section>
 <section>
-    <table>
-        <thead>
-        <tr>
-            <th>media_id</th>
-            <th>user_id</th>
-            <th>filename</th>
-            <th>filesize</th>
-            <th>media_type</th>
-            <th>title</th>
-            <th>description</th>
-            <th>created_at</th>
-            <th>Options</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php require_once 'selectData.php'; ?>
-        </tbody>
-    </table>
+    <h2>Register</h2>
+    <!-- register form -->
+    <form action="register.php" method="post">
+        <div>
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username">
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password">
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email">
+        </div>
+        <div>
+            <input type="submit" value="Register">
+        </div>
+    </form>
 </section>
-<dialog id="modify-modal">
-    <p><a href="#" class="close-modal">Close</a></p>
-    <div id="modify-content"></div>
-</dialog>
-</body>
-</html>
+<?php
+require_once __DIR__ . '/inc/footer.php';
+?>

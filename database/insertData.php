@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $temp_file = $_FILES['file']['tmp_name'];
         $destination = __DIR__ . '/uploads/' . $filename;
         if(!move_uploaded_file($temp_file, $destination)) {
-            header('Location: index.php?success=File upload failed');
+            header('Location: home.php?success=File upload failed');
             exit;
         }
 
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             $STH = $DBH->prepare($sql);
             $STH->execute($data);
-            header('Location: index.php?success=Item added');
+            header('Location: home.php?success=Item added');
         } catch (PDOException $e){
             echo "Could not insert data into the database.";
             file_put_contents('PDOErrors.txt', 'insertData.php - ' . $e->getMessage(), FILE_APPEND);

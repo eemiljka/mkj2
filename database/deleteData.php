@@ -79,7 +79,7 @@ if (isset($_GET['id'])) {
         $STH = $DBH->prepare($sql);
         $STH->execute($data);
         $DBH->commit();
-        header('Location: index.php?success=Item deleted');
+        header('Location: home.php?success=Item deleted');
     } catch (PDOException $e) {
         $DBH->rollBack();
         echo "Could not delete data from the database.";
@@ -87,6 +87,6 @@ if (isset($_GET['id'])) {
         exit;
     }
 } else {
-    header('Location: index.php?error=No id given');
+    header('Location: home.php?error=No id given');
 }
 
