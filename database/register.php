@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'email' => $_POST['email']
         ];
 
-        $sql = 'INSERT INTO Users (username, password, email) VALUES (:username, :password, :email)';
+        $sql = 'INSERT INTO Users (username, password, email, user_level_id) VALUES (:username, :password, :email, 2)';
 
         try {
             $STH = $DBH->prepare($sql);

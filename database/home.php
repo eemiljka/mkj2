@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (!isset($_SESSION['user'])) {
+    header('Location: home.php');
+    exit;
+}
 require_once __DIR__ . '/inc/header.php';
 ?>
 <section>
