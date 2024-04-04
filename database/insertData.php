@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (!isset($_SESSION['user'])) {
+    header('Location: index.php');
+    exit;
+}
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 global $DBH;
@@ -11,13 +16,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $filesize = $_FILES['file']['size'];
         $temp_file = $_FILES['file']['tmp_name'];
         $destination = __DIR__ . '/uploads/' . $filename;
-        if(!move_uploaded_file($temp_file, $destination)) {
-            header('Location: home.php?success=File upload failed');
+        if (!move_uploaded_file($temp_file, $destination)) {
+            // header('Location: home.php?success=File upload failed');
             exit;
         }
 
         $data = [
-            'user_id' => 1,
+            'user_id' => $_SESSION['user']['user_id'],
             'filename' => $filename,
             'media_type' => $filetype,
             'title' => $_POST['title'],
@@ -32,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $STH = $DBH->prepare($sql);
             $STH->execute($data);
             header('Location: home.php?success=Item added');
-        } catch (PDOException $e){
+        } catch (PDOException $e) {
             echo "Could not insert data into the database.";
             file_put_contents('PDOErrors.txt', 'insertData.php - ' . $e->getMessage(), FILE_APPEND);
         }

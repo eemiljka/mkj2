@@ -1,4 +1,10 @@
 <?php
+session_start();
+if (!isset($_SESSION['user'])) {
+    header('Location: index.php');
+    exit;
+}
+
 global $DBH;
 require_once 'dbConnect.php';
 
@@ -17,10 +23,14 @@ try {
         echo '<td>' . $row['title'] . '</td>';
         echo '<td>' . $row['description'] . '</td>';
         echo '<td>' . $row['created_at'] . '</td>';
-        echo '<td>
+        if ($_SESSION['user']['user_id'] == $row['user_id']) {
+            echo '<td>
                 <a href="deleteData.php?id=' . $row['media_id'] . '">Delete</a>
                 <a href="#" class="modify-link" data-id="' . $row['media_id'] . '">Modify</a>   
               </td>';
+        } else {
+            echo '<td>Ei kuulu sulle</td>';
+        }
         echo '</tr>';
     }
 } catch (PDOException $e) {
